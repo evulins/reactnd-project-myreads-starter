@@ -14,7 +14,6 @@ class Book extends Component {
 
   render() {
     const book = this.props.book
-
     return (
       <li>
         <div className="book">

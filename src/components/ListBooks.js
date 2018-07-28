@@ -26,9 +26,12 @@ class ListBooks extends Component {
         		{Object.getOwnPropertyNames(shelfs).map(shelf => {
 	        		return(
 	        			<BookShelf
-		        			books={books}
+		        			books={books.filter((book) => {
+		        				return book.shelf === shelf
+		        			})}
 		        			title={shelfs[shelf]}
-	        			/>)
+	        			/>
+	        			)
         		})}
         </div>
 
