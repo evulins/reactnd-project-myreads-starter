@@ -9,11 +9,13 @@ class ListBooks extends Component {
 
 	static propTypes = {
 		books: PropTypes.array.isRequired,
+		shelfs: PropTypes.object.isRequired,
 		onChange: PropTypes.func.isRequired
 	}
 
 	render() {
 		const books = this.props.books
+		const shelfs = this.props.shelfs
 
 		return (
 			<div className="list-books">
@@ -21,10 +23,13 @@ class ListBooks extends Component {
           <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
-        		<BookShelf
-        			books={books}
-        			title='All'
-        		/>
+        		{Object.getOwnPropertyNames(shelfs).map(shelf => {
+	        		return(
+	        			<BookShelf
+		        			books={books}
+		        			title={shelfs[shelf]}
+	        			/>)
+        		})}
         </div>
 
         <div className="open-search">
