@@ -2,19 +2,19 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
-// import escapeRegExp from 'escape-string-regexp'
-// import sortBy from 'sort-by'
 
 class ListBooks extends Component {
 
 	static propTypes = {
 		books: PropTypes.array.isRequired,
-		shelfs: PropTypes.object.isRequired
+		shelfs: PropTypes.object.isRequired,
+		moveBook: PropTypes.func.isRequired
 	}
 
 	render() {
 		const books = this.props.books
 		const shelfs = this.props.shelfs
+		const moveBook = this.props.moveBook
 
 		return (
 			<div className="list-books">
@@ -29,6 +29,7 @@ class ListBooks extends Component {
 		        				return book.shelf === shelf
 		        			})}
 		        			title={shelfs[shelf]}
+		        			moveBook={moveBook}
 		        			key={shelf}
 	        			/>
 	        			)

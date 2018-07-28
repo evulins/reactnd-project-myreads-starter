@@ -7,10 +7,15 @@ class BookShelf extends Component {
 	static propTypes = {
 		books: PropTypes.array.isRequired,
 		title: PropTypes.string.isRequired,
+		moveBook: PropTypes.func.isRequired
 	}
+
+
 
 	render() {
 		const books = this.props.books
+		const moveBook = this.props.moveBook
+		
 		return (
 			<div className="bookshelf">
 				<h2 className="bookshelf-title">{this.props.title}</h2>
@@ -19,6 +24,7 @@ class BookShelf extends Component {
 						{books.map((book, index) => (
 							<Book 
 								book={book}
+								onChange={moveBook}
 								key={index}
               />
             ))}
