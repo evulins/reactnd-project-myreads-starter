@@ -21,11 +21,19 @@ class BooksApp extends React.Component {
     })
   }
 
-  moveBook(book, shelf) {
+  moveBook = (book, shelf) => {
     BooksAPI.update(book, shelf).then(() => {
       BooksAPI.getAll().then((books) => {
         this.setState({ books })
       })
+    })
+  }
+
+  searchBook = (query) => {
+    if(query.length === 0)
+      return;
+    BooksAPI.search(query).then((books) => {
+      this.setState({ books })
     })
   }
 
@@ -38,13 +46,15 @@ class BooksApp extends React.Component {
           <ListBooks 
             books={this.state.books} 
             shelfs={this.state.shelfs}
-            moveBook={this.moveBook.bind(this)}
+            moveBook={this.moveBook}
           />
         )}/>
 
         <Route path="/search" render={({ history }) => (
           <BookSearch
-             myBooks={this.state.books}
+             books={this.state.books}
+             searchBook={this.searchBook}
+             moveBook={this.moveBook}
           />
         )}/>
       </div>
