@@ -10,11 +10,8 @@ class BookShelf extends Component {
     moveBook: PropTypes.func.isRequired
   }
 
-
-
   render() {
-    const books = this.props.books
-    const moveBook = this.props.moveBook
+    const { books, moveBook } = this.props
     
     return (
       <div className="bookshelf">

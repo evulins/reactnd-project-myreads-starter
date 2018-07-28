@@ -9,8 +9,7 @@ class Book extends Component {
   }
 
   onChangeShelf = (element) => {
-    const onChange = this.props.onChange
-    const book = this.props.book
+    const { onChange, book } = this.props
     const shelf = element.target.value
     onChange(book, shelf)
   }

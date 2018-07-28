@@ -11,9 +11,7 @@ class ListBooks extends Component {
 	}
 
 	render() {
-		const books = this.props.books
-		const shelfs = this.props.shelfs
-		const moveBook = this.props.moveBook
+		const { books, shelfs, moveBook } = this.props
 
 		return (
 			<div className="list-books">
