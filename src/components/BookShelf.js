@@ -4,16 +4,11 @@ import Book from './Book'
 
 class BookShelf extends Component {
 
-	static PropTypes = {
+	static propTypes = {
 		books: PropTypes.array.isRequired,
 		title: PropTypes.string.isRequired,
-		onChangeShelf: PropTypes.func.isRequired
 	}
 
-	updateBook = (book, shelf) => {
-    this.props.onChangeShelf(book, shelf)
-  }
-	
 	render() {
 		const books = this.props.books
 		return (
@@ -25,9 +20,6 @@ class BookShelf extends Component {
 							<Book 
 								book={book}
 								key={index}
-								onUpdate={(shelf) => {
-              		this.updateBook(book, shelf)
-              	}}
               />
             ))}
 					</ol>

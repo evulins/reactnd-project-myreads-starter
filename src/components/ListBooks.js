@@ -9,8 +9,7 @@ class ListBooks extends Component {
 
 	static propTypes = {
 		books: PropTypes.array.isRequired,
-		shelfs: PropTypes.object.isRequired,
-		onChange: PropTypes.func.isRequired
+		shelfs: PropTypes.object.isRequired
 	}
 
 	render() {
@@ -30,6 +29,7 @@ class ListBooks extends Component {
 		        				return book.shelf === shelf
 		        			})}
 		        			title={shelfs[shelf]}
+		        			key={shelf}
 	        			/>
 	        			)
         		})}
