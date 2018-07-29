@@ -8,7 +8,8 @@ import PropTypes from 'prop-types'
 class BookSearch extends Component {
 
 	static propTypes = {
-    moveBook: PropTypes.func.isRequired
+    moveBook: PropTypes.func.isRequired,
+    userBooks: PropTypes.array.isRequired
 	}
 
   state = {
@@ -35,8 +36,34 @@ class BookSearch extends Component {
     }
   }
 
-	render() {
+  shelfStatus = (book) => {
+    const userBooks = this.props.userBooks
+    const ids = userBooks.map((book) => {
+        return book.id
+      })
+    return ids.includes(book.id)
+  }
+
+  findInUserBooks = (book) => {
+    const userBooks = this.props.userBooks
+    return userBooks.find(x => x.id === book.id)
+  }
+
+  putBooksOnShelfs = () => {
     const books = this.state.books
+    const booksOnShelfs = books.map(book => {
+      const userBook = this.findInUserBooks(book)
+      if (userBook) {
+        return { ...book, shelf: userBook.shelf }
+      } else {
+        return { ...book, shelf: 'none' }
+      }
+    })
+    return booksOnShelfs
+  }
+
+	render() {
+    const books = this.putBooksOnShelfs()
     const moveBook = this.props.moveBook
     
 		return (
@@ -54,13 +81,14 @@ class BookSearch extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {books.map((book, index) => (
+            {books.map((book, index) => {
+              return(
                 <Book 
                   book={book}
                   onChange={moveBook}
                   key={index}
-                />
-            ))}
+                />)
+            })}
           </ol>
         </div>
       </div>
