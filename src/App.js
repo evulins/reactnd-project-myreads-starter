@@ -33,13 +33,6 @@ class BooksApp extends React.Component {
     })
   }
 
-  searchBook = (query) => {
-    if(query.length === 0)
-      return;
-    BooksAPI.search(query).then((books) => {
-      this.setState({ books })
-    })
-  }
 
   render() {
     return (
@@ -54,8 +47,6 @@ class BooksApp extends React.Component {
 
         <Route path="/search" render={({ history }) => (
           <BookSearch
-             books={this.state.books}
-             searchBook={this.searchBook}
              moveBook={this.moveBook}
           />
         )}/>

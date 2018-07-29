@@ -1,33 +1,42 @@
 import React, { Component } from 'react'
 import Book from './Book'
 import { Link } from 'react-router-dom'
+import * as BooksAPI from '../BooksAPI'
 import PropTypes from 'prop-types'
 
 
 class BookSearch extends Component {
 
 	static propTypes = {
-    books: PropTypes.array.isRequired,
-    searchBook: PropTypes.func.isRequired,
     moveBook: PropTypes.func.isRequired
 	}
 
   state = {
+    books: [],
     query: ''
   }
 
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
-    const searchBook = this.props.searchBook
-    searchBook(query)
+    this.searchBook(query)
   }
 
-  clearQuery = () => {
-    this.setState({ query: ''})
+  searchBook = (query) => {
+    if(query.length === 0) {
+     this.setState({ books: [] })
+    } else {
+      BooksAPI.search(query).then((response) => {
+        if (Array.isArray(response)) {
+          this.setState({ books: response })
+        } else {
+          this.setState({ books: [] })
+        }
+      })
+    }
   }
 
 	render() {
-    const books = this.props.books
+    const books = this.state.books
     const moveBook = this.props.moveBook
     
 		return (
