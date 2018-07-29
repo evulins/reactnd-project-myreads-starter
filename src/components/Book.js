@@ -14,6 +14,14 @@ class Book extends Component {
     onChange(book, shelf)
   }
 
+  checkThumbnail = (book) => {
+    if (book.imageLinks) {
+      return book.imageLinks.thumbnail
+    } else {
+      return ''
+    }
+  }
+
   render() {
     const book = this.props.book
     return (
@@ -23,7 +31,7 @@ class Book extends Component {
             <div className="book-cover" style={{
               width: 128,
               height: 193,
-              backgroundImage: 'url("'+ book.imageLinks.smallThumbnail + '")'
+              backgroundImage: 'url("'+ this.checkThumbnail(book) + '")'
             }}>
             </div>
             <div className="book-shelf-changer">
