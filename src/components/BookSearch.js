@@ -7,10 +7,10 @@ import PropTypes from 'prop-types'
 
 class BookSearch extends Component {
 
-	static propTypes = {
+  static propTypes = {
     moveBook: PropTypes.func.isRequired,
     userBooks: PropTypes.array.isRequired
-	}
+  }
 
   state = {
     books: [],
@@ -62,12 +62,12 @@ class BookSearch extends Component {
     return booksOnShelfs
   }
 
-	render() {
+  render() {
     const books = this.putBooksOnShelfs()
     const moveBook = this.props.moveBook
     
-		return (
-			<div className="search-books">
+    return (
+      <div className="search-books">
         <div className="search-books-bar">
           <Link className="close-search" to="/">Close</Link>
           <div className="search-books-input-wrapper">
@@ -92,8 +92,8 @@ class BookSearch extends Component {
           </ol>
         </div>
       </div>
-		)
-	}
+    )
+  }
 }
 
 export default BookSearch

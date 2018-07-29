@@ -6,7 +6,7 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class BooksApp extends React.Component {
-  
+
   state = {
     books: [],
     shelfs: {
@@ -22,18 +22,13 @@ class BooksApp extends React.Component {
     })
   }
 
-  moveBook = (book, shelf) => {
-    return BooksAPI.update(book, shelf)
-  }
-
   moveBookandUpdate = (book, shelf) => {
-    this.moveBook(book, shelf).then(() => {
+    BooksAPI.update(book, shelf).then(() => {
       BooksAPI.getAll().then((books) => {
         this.setState({ books })
       })
     })
   }
-
 
   render() {
     return (
