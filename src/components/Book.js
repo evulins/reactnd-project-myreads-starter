@@ -15,11 +15,7 @@ class Book extends Component {
   }
 
   checkThumbnail = (book) => {
-    if (book.imageLinks) {
-      return book.imageLinks.thumbnail
-    } else {
-      return ''
-    }
+      return book.imageLinks ? book.imageLinks.thumbnail : ''
   }
 
   render() {
